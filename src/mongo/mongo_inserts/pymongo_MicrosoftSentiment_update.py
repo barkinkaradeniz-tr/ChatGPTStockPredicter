@@ -9,7 +9,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.organization = os.getenv("ORGANIZATION_KEY")
 
 dbname = get_database()
-collection_name = dbname["AlphabetNews"]
+collection_name = dbname["MicrosoftNews"]
 
 for item in collection_name.find():
     if "sentiment" in item and type(item["sentiment"]) == str:
@@ -26,9 +26,8 @@ for item in collection_name.find():
     elif "sentiment" in item and type(item["sentiment"]) == float:
         continue
     
-    
     try:
-        promptText = "I want you to analyze the next news article I give you, extract a sentiment score from it, and evaluate how positive or negative it is for the company Alphabet. '-10' being extremely negative and '10' being extremely positive. Don't forget to consider relevancy. You are allowed to use floating-point numbers. Don't explain anything further. Don't use any other character. Only '+', '-', '.' and numbers."
+        promptText = "I want you to analyze the next news article I give you, extract a sentiment score from it, and evaluate how positive or negative it is for the company Microsoft. '-10' being extremely negative and '10' being extremely positive. Don't forget to consider relevancy. You are allowed to use floating-point numbers. Don't explain anything further. Don't use any other character. Only '+', '-', '.' and numbers."
         promptText += item["content"]
         promptText = promptText[:16388]
 
