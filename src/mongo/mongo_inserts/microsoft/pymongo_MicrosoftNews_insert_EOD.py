@@ -1,8 +1,11 @@
+import os
 import requests
 from datetime import datetime  
 from datetime import timedelta  
 from src.mongo.pymongo_get_database import get_database
 
+from dotenv import load_dotenv
+load_dotenv()
 
 dbname = get_database()
 collection_name = dbname["MicrosoftNews"]
@@ -17,7 +20,7 @@ while dateObj != datetime(2023, 4, 2):
         'language=en&'
         'from={}&'
         'to={}&'
-        'api_token=644bb53acdefe0.46250516').format(dateString, dateString)
+        'api_token={}').format(dateString, dateString, os.getenv("eodhistoricaldataAPIKey"))
 
   response = requests.get(url)
 
